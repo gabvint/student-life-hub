@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const subjectSchema = require('./subject.js');
+
 
 const userSchema = mongoose.Schema({
   

@@ -8,6 +8,8 @@ const morgan = require('morgan');
 const session = require('express-session');
 
 const authController = require('./controllers/auth.js');
+const subjectsController = require('./controllers/subjects.js');
+
 
 const isSignedIn = require('./middleware/is-signed-in.js');
 const passUserToView = require('./middleware/pass-user-to-view.js');
@@ -32,15 +34,22 @@ app.use(
   })
 );
 
-app.get('/', (req, res) => {
-  res.render('index.ejs', {
-    user: req.session.user,
-  });
-});
 
 app.use(passUserToView);
+
+
+app.get('/', (req, res) => {
+  // if the user is logged in, redirected to the main page
+  if(req.session.user){
+    res.redirect(`/users/${req.session.user._id}/subjects`)
+  } else {
+    res.render('index.ejs');
+  }
+});
+
 app.use('/auth', authController);
 app.use(isSignedIn)
+app.use('/users/:userId/subjects', subjectsController);
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

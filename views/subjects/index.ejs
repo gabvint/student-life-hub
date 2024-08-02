@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Assignments</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+   <h1>My Assignments</h1> 
+
+   <!-- will be used for a modal -->
+   <section>
+
+        <h3>Add Assignment</h3>
+        
+        <form action="/users/<%= user._id %>/subjects" method="POST">
+
+        <label for="">Subject:</label>
+        <input list="predefined-subjects" name="name" id="name">
+        <datalist id="predefined-subjects">
+            <option value="Math">
+            <option value="Science">
+            <option value="Physical Education">
+            <option value="Art">
+            <option value="Foreign Language">
+            <option value="History">
+            <option value="Music">
+            <option value="Computer">
+        </datalist>
+
+        <button type="submit">Submit</button>
+        </form>
+
+   </section>
+
+   <!-- end modal -->
+
+</body>
+</html>
