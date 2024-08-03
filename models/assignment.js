@@ -9,7 +9,7 @@ const assignmentSchema = new mongoose.Schema({
         required: true, 
     }, 
   
-    description: {
+    notes: {
         type: String, 
     }, 
   

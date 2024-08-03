@@ -18,7 +18,7 @@
 
         <!-- data for subjects -->
         <label for="name">Subject:</label>
-        <input list="predefined-subjects" name="name" id="name">
+        <input list="predefined-subjects" name="name" id="name" required>
         <datalist id="predefined-subjects">
             <option value="Math">
             <option value="Science">
@@ -32,16 +32,16 @@
 
         <!-- data for assignment -->
         <label for="title">Name:</label>
-        <input type="text" name="title" id="title">
+        <input type="text" name="title" id="title" required>
 
-        <label for="description">Description:</label>
-        <textarea name="description" id="description"></textarea>
+        <label for="notes">Description:</label>
+        <textarea name="notes" id="notes"></textarea>
 
         <label for="dueDate">Due date:</label>
-        <input type="date" name="dueDate" id="dueDate">
+        <input type="date" name="dueDate" id="dueDate" required>
 
         <label for="progress">Progress:</label>
-        <select name="progress" id="progress">
+        <select name="progress" id="progress" required>
             <option value="Not yet Started">Not yet Started</option>
             <option value="In progress">In progress</option>
             <option value="For checking">For checking</option>
@@ -52,7 +52,7 @@
         <input type="text" name="link" id="link">
 
         <label for="grade">Grade:</label>
-        <input type="text" name="grade" id="grade">
+        <input type="number" name="grade" id="grade">
 
         <button type="submit">Submit</button>
         </form> 
@@ -60,6 +60,13 @@
    </section>
 
    <!-- end modal -->
+
+
+   <ul>
+        
+   </ul>
+
+
 
 </body>
 </html>

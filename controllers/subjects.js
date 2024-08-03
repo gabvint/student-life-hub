@@ -8,8 +8,13 @@ const assignmentSchema = require('../models/assignment.js');
 
 router.get('/', async (req, res) => {
     try {
+        const currUser = await User.findById(req.session.user._id);
 
-        res.render('subjects/index.ejs')
+        res.render('subjects/index.ejs', {
+            subject: currUser.subjects, 
+            assignment: currUser.subjects.assignment,
+        })
+
 
     } catch (error) {
         console.log(error)
@@ -23,18 +28,28 @@ router.post('/', async (req, res) => {
         // look up the user from req.session 
         const currentUser = await User.findById(req.session.user);
         const subjectName = req.body.name;
-    
+        const assignment = req.body;
+        
+        if (assignment.notes === ''){
+            assignment.notes = 'none';
+        }
+        if (assignment.link === ''){
+           assignment.link = 'none';
+        } 
+        if (assignment.grade === ''){
+            assignment.grade = 0;
+        }
         let subject = currentUser.subjects.find(subject => subject.name === subjectName);
 
-        if (!subject) {
-            subject = { name: subjectName, assignments: [] };
+        if (subject === undefined) {
+            subject = { name: subjectName, assignments: [assignment]};
             currentUser.subjects.push(subject);
+            console.log('pasok here')
+        } else{
+            subject.assignments.push(assignment);
         }
+        
 
-        // Push the assignment to the subject's assignments array
-        subject.assignments.push(req.body);
-
-        console.log(req.body)
         // Save the updated user document
         await currentUser.save();
 
@@ -45,8 +60,6 @@ router.post('/', async (req, res) => {
         res.redirect('/')
     }
       
-
-
 })
 
 
