@@ -9,9 +9,10 @@ const subjectSchema = new mongoose.Schema({
         enum: ['Math', 'Science', 'Physical Education', 'Art', 'Foreign Language', 'History', 'Music', 'Computer'],
         required: true,
     }, 
-    assignment: [assignmentSchema],
-  
+    assignments: [assignmentSchema],
+    
   })
+
 
 
 module.exports = subjectSchema

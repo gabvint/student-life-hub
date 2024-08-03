@@ -16,7 +16,8 @@
         
         <form action="/users/<%= user._id %>/subjects" method="POST">
 
-        <label for="">Subject:</label>
+        <!-- data for subjects -->
+        <label for="name">Subject:</label>
         <input list="predefined-subjects" name="name" id="name">
         <datalist id="predefined-subjects">
             <option value="Math">
@@ -29,8 +30,32 @@
             <option value="Computer">
         </datalist>
 
+        <!-- data for assignment -->
+        <label for="title">Name:</label>
+        <input type="text" name="title" id="title">
+
+        <label for="description">Description:</label>
+        <textarea name="description" id="description"></textarea>
+
+        <label for="dueDate">Due date:</label>
+        <input type="date" name="dueDate" id="dueDate">
+
+        <label for="progress">Progress:</label>
+        <select name="progress" id="progress">
+            <option value="Not yet Started">Not yet Started</option>
+            <option value="In progress">In progress</option>
+            <option value="For checking">For checking</option>
+            <option value="Done">Done</option>
+        </select>
+
+        <label for="link">Links:</label>
+        <input type="text" name="link" id="link">
+
+        <label for="grade">Grade:</label>
+        <input type="text" name="grade" id="grade">
+
         <button type="submit">Submit</button>
-        </form>
+        </form> 
 
    </section>
 

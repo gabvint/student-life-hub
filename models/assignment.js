@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const assignmentSchema = new mongoose.Schema({
    
-    name: {
+    title: {
         type: String, 
         required: true, 
     }, 
@@ -24,7 +24,7 @@ const assignmentSchema = new mongoose.Schema({
         required: true, 
     }, 
   
-    links: {
+    link: {
         type: String, 
     }, 
   

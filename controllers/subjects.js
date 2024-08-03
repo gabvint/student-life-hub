@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/user.js');
+const assignmentSchema = require('../models/assignment.js');
 
 // /users/:userId/subjects
 
@@ -17,14 +18,35 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-        // look up the user from req.session 
-        const currentUser = await User.findById(req.session.user)
 
-        // push req.body to applications array of the current user 
-        currentUser.subjects.push(req.body)
+    try {
+        // look up the user from req.session 
+        const currentUser = await User.findById(req.session.user);
+        const subjectName = req.body.name;
     
-        // save 
-        await currentUser.save()
+        let subject = currentUser.subjects.find(subject => subject.name === subjectName);
+
+        if (!subject) {
+            subject = { name: subjectName, assignments: [] };
+            currentUser.subjects.push(subject);
+        }
+
+        // Push the assignment to the subject's assignments array
+        subject.assignments.push(req.body);
+
+        console.log(req.body)
+        // Save the updated user document
+        await currentUser.save();
+
+        res.redirect(`/users/${req.session.user._id}/subjects`)
+
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+    }
+      
+
+
 })
 
 
