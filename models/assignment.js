@@ -17,6 +17,10 @@ const assignmentSchema = new mongoose.Schema({
         type: Date, 
         required: true, 
     }, 
+
+    time: {
+        type: String, 
+    },
   
     progress: {
         type: String,

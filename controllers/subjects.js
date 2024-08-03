@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 
         res.render('subjects/index.ejs', {
             subject: currUser.subjects, 
-            assignment: currUser.subjects.assignment,
+            assignment: currUser.subjects.assignments,
         })
 
 

@@ -34,11 +34,14 @@
         <label for="title">Name:</label>
         <input type="text" name="title" id="title" required>
 
-        <label for="notes">Description:</label>
+        <label for="notes">Notes:</label>
         <textarea name="notes" id="notes"></textarea>
 
         <label for="dueDate">Due date:</label>
         <input type="date" name="dueDate" id="dueDate" required>
+
+        <label for="time">Time:</label>
+        <input type="time" name="time" id="time">
 
         <label for="progress">Progress:</label>
         <select name="progress" id="progress" required>
@@ -63,7 +66,17 @@
 
 
    <ul>
-        
+       <% subject.forEach(subject => { %>
+            <h2><%= subject.name %></h2>
+
+            <% subject.assignments.forEach(assignment => { %>
+                <li>Title: <%= assignment.title %></li>
+                <li>Notes: <%= assignment.notes %></li>
+                <li>Due Date: <%= assignment.dueDate.toDateString() %></li>
+                <li>Time: <%= assignment.time %></li>
+            <% }) %>
+
+       <% }) %>
    </ul>
 
 

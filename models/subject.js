@@ -6,7 +6,6 @@ const subjectSchema = new mongoose.Schema({
     
     name: {
         type: String, 
-        //enum: ['Math', 'Science', 'Physical Education', 'Art', 'Foreign Language', 'History', 'Music', 'Computer'],
         required: true,
     }, 
     assignments: [assignmentSchema],
