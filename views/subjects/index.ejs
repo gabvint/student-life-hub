@@ -74,6 +74,12 @@
                 <li>Notes: <%= assignment.notes %></li>
                 <li>Due Date: <%= assignment.dueDate.toDateString() %></li>
                 <li>Time: <%= assignment.time %></li>
+                <li>Progress: <%= assignment.progress %></li>
+                <li>Link: <%= assignment.link %></li>
+                <li>Grade: <%= assignment.grade %></li>
+
+                <!-- edit this for frontend -->
+                <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>">View</a>
             <% }) %>
 
        <% }) %>

@@ -4,12 +4,13 @@ const router = express.Router();
 const User = require('../models/user.js');
 const assignmentSchema = require('../models/assignment.js');
 
-// /users/:userId/subjects
+// Everything starts with /users/:userId/subjects
 
 router.get('/', async (req, res) => {
     try {
-        const currUser = await User.findById(req.session.user._id);
+        const currUser = await User.findById(req.session.user._id)
 
+        // finds all the subjects and assignments
         res.render('subjects/index.ejs', {
             subject: currUser.subjects, 
             assignment: currUser.subjects.assignments,
@@ -26,29 +27,33 @@ router.post('/', async (req, res) => {
 
     try {
         // look up the user from req.session 
-        const currentUser = await User.findById(req.session.user);
-        const subjectName = req.body.name;
-        const assignment = req.body;
+        const currentUser = await User.findById(req.session.user)
+        const subjectName = req.body.name
+        const assignment = req.body
         
+        // since these fields aren't required, we are temporarily storing values for it 
         if (assignment.notes === ''){
-            assignment.notes = 'none';
+            assignment.notes = 'none'
         }
         if (assignment.link === ''){
-           assignment.link = 'none';
+           assignment.link = 'none'
         } 
         if (assignment.grade === ''){
-            assignment.grade = 0;
+            assignment.grade = 0
         }
-        let subject = currentUser.subjects.find(subject => subject.name === subjectName);
 
+        // finds if there is an existing subject in the db
+        let subject = currentUser.subjects.find(subject => subject.name === subjectName)
+
+        // if no subject exists, create a new subject and then store the assignments in it
         if (subject === undefined) {
-            subject = { name: subjectName, assignments: [assignment]};
-            currentUser.subjects.push(subject);
-            console.log('pasok here')
+            subject = { name: subjectName, assignments: [assignment]}
+            currentUser.subjects.push(subject)
+         
+        // if the subject already exists, this just add the assignment under the subject
         } else{
-            subject.assignments.push(assignment);
+            subject.assignments.push(assignment)
         }
-        
 
         // Save the updated user document
         await currentUser.save();
@@ -63,4 +68,85 @@ router.post('/', async (req, res) => {
 })
 
 
+router.get('/:subjectId/:assignmentId', async (req, res) => {
+    try {  
+        const currUser = await User.findById(req.session.user._id)
+        const subject = currUser.subjects.id(req.params.subjectId)
+        const assignment = subject.assignments.id(req.params.assignmentId)
+
+        res.render('subjects/show.ejs', {
+            subject: subject, 
+            assignment: assignment,
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+    }
+
+})
+
+router.get('/:subjectId/:assignmentId/edit', async (req, res) => {
+    try {
+
+        const currUser = await User.findById(req.session.user._id)
+        const subject = currUser.subjects.id(req.params.subjectId)
+        const assignment = subject.assignments.id(req.params.assignmentId)
+
+        // formatting for date
+        // Adjust the date to the local timezone by subtracting the timezone offset
+        // this ensures that when the date is displayed, it will not add another day :(
+        const dueDate = new Date(assignment.dueDate)
+        const localDate = new Date(dueDate.getTime() - (dueDate.getTimezoneOffset() * 60000))
+        const dueDateFormatted = localDate.toISOString().split('T')[0]
+
+        // formatting for time
+        const time = assignment.time
+
+        res.render('subjects/edit.ejs', {
+            subject: subject, 
+            assignment: assignment,
+            date: dueDateFormatted,
+            time: time,
+        })
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')   
+    }
+})
+
+router.put('/:subjectId/:assignmentId', async (req, res) => {
+    try {
+        const currUser = await User.findById(req.session.user._id)
+        const subject = currUser.subjects.id(req.params.subjectId)
+        const assignment = subject.assignments.id(req.params.assignmentId)
+
+        subject.set(req.body.name)
+        assignment.set(req.body)
+
+        await currUser.save()
+
+        res.redirect(`/users/${req.session.user._id}/subjects`)
+    } catch (error) {
+        
+    }
+})
+
+router.delete('/:subjectId/:assignmentId', async (req, res) => {
+    try {
+        const currUser = await User.findById(req.session.user._id)
+        const subject = currUser.subjects.id(req.params.subjectId)
+        const assignment = subject.assignments.id(req.params.assignmentId)
+
+        assignment.deleteOne()
+
+        await currUser.save() // Save the changes to the user document
+
+        res.redirect(`/users/${req.session.user._id}/subjects`)
+        
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+    }
+})
 module.exports = router
