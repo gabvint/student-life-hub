@@ -121,8 +121,9 @@ router.put('/:subjectId/:assignmentId', async (req, res) => {
         const subject = currUser.subjects.id(req.params.subjectId)
         const assignment = subject.assignments.id(req.params.assignmentId)
 
-        subject.set(req.body.name)
+        subject.set(req.body)
         assignment.set(req.body)
+
 
         await currUser.save()
 
@@ -132,6 +133,7 @@ router.put('/:subjectId/:assignmentId', async (req, res) => {
     }
 })
 
+// router to delete assignment
 router.delete('/:subjectId/:assignmentId', async (req, res) => {
     try {
         const currUser = await User.findById(req.session.user._id)
@@ -149,4 +151,26 @@ router.delete('/:subjectId/:assignmentId', async (req, res) => {
         res.redirect('/')
     }
 })
+
+// router to delete subject 
+// router.delete('/:subjectId', async (req, res) => {
+//     try {
+//         const currUser = await User.findById(req.session.user._id)
+//         const subject = currUser.subjects.id(req.params.subjectId)
+
+//         if (subject.assignments.length > 0){
+//             res.send(`You cannot delete this subject because you still have pending assignments!`)
+//         } else {
+//             subject.deleteOne()
+//             await currUser.save() 
+//         }
+
+//         res.redirect(`/users/${req.session.user._id}/subjects`)
+        
+//     } catch (error) {
+//         console.log(error)
+//         res.redirect('/')
+//     }
+// })
+
 module.exports = router

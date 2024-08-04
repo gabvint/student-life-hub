@@ -4,88 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Assignments</title>
+    <script defer src="/js/app.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-    <%- include('../partials/_navbar.ejs') %>
-   <h1>My Assignments</h1> 
+    <aside>
+        <%- include('../partials/_navbar.ejs') %> 
+    </aside>
 
-   <!-- will be used for a modal -->
-   <section>
+    <main>
+        <h1>My Assignments</h1> 
+     
+        <!-- will be used for a modal -->
+        <section class="modal hidden">
+            <div class="flex">
+                <h3>Add Assignment</h3>
+                <button class="btn-close">⨉</button>
+            </div>
+             
 
-        <h3>Add Assignment</h3>
-        
-        <form action="/users/<%= user._id %>/subjects" method="POST">
-
-        <!-- data for subjects -->
-        <label for="name">Subject:</label>
-        <input list="predefined-subjects" name="name" id="name" required>
-        <datalist id="predefined-subjects">
-            <option value="Math">
-            <option value="Science">
-            <option value="Physical Education">
-            <option value="Art">
-            <option value="Foreign Language">
-            <option value="History">
-            <option value="Music">
-            <option value="Computer">
-        </datalist>
-
-        <!-- data for assignment -->
-        <label for="title">Name:</label>
-        <input type="text" name="title" id="title" required>
-
-        <label for="notes">Notes:</label>
-        <textarea name="notes" id="notes"></textarea>
-
-        <label for="dueDate">Due date:</label>
-        <input type="date" name="dueDate" id="dueDate" required>
-
-        <label for="time">Time:</label>
-        <input type="time" name="time" id="time">
-
-        <label for="progress">Progress:</label>
-        <select name="progress" id="progress" required>
-            <option value="Not yet Started">Not yet Started</option>
-            <option value="In progress">In progress</option>
-            <option value="For checking">For checking</option>
-            <option value="Done">Done</option>
-        </select>
-
-        <label for="link">Links:</label>
-        <input type="text" name="link" id="link">
-
-        <label for="grade">Grade:</label>
-        <input type="number" name="grade" id="grade">
-
-        <button type="submit">Submit</button>
-        </form> 
-
-   </section>
-
-   <!-- end modal -->
+             <form class="format-add" action="/users/<%= user._id %>/subjects" method="POST">
+     
+             <!-- data for subjects -->
+             <label for="name">Subject:</label>
+             <input list="predefined-subjects" name="name" id="name" required>
+             <datalist id="predefined-subjects">
+                 <option value="Math">
+                 <option value="Science">
+                 <option value="Physical Education">
+                 <option value="Art">
+                 <option value="Foreign Language">
+                 <option value="History">
+                 <option value="Music">
+                 <option value="Computer">
+             </datalist>
+     
+             <!-- data for assignment -->
+             <label for="title">Name:</label>
+             <input type="text" name="title" id="title" required>
+     
+             <label for="notes">Notes:</label>
+             <textarea name="notes" id="notes"></textarea>
+     
+             <label for="dueDate">Due date:</label>
+             <input type="date" name="dueDate" id="dueDate" required>
+     
+             <label for="time">Time:</label>
+             <input type="time" name="time" id="time">
+     
+             <label for="progress">Progress:</label>
+             <select name="progress" id="progress" required>
+                 <option value="Not yet Started">Not yet Started</option>
+                 <option value="In progress">In progress</option>
+                 <option value="For checking">For checking</option>
+                 <option value="Done">Done</option>
+             </select>
+     
+             <label for="link">Links:</label>
+             <input type="text" name="link" id="link">
+     
+             <label for="grade">Grade:</label>
+             <input type="number" name="grade" id="grade">
+     
+             <button type="submit">Submit</button>
+             </form> 
+     
+        </section>
+        <div class="overlay hidden"></div>
+        <button class="addBtn btn-open">Add Assignment</button>
 
 
-   <ul>
-       <% subject.forEach(subject => { %>
-            <h2><%= subject.name %></h2>
-
-            <% subject.assignments.forEach(assignment => { %>
-                <li>Title: <%= assignment.title %></li>
-                <li>Notes: <%= assignment.notes %></li>
-                <li>Due Date: <%= assignment.dueDate.toDateString() %></li>
-                <li>Time: <%= assignment.time %></li>
-                <li>Progress: <%= assignment.progress %></li>
-                <li>Link: <%= assignment.link %></li>
-                <li>Grade: <%= assignment.grade %></li>
-
-                <!-- edit this for frontend -->
-                <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>">View</a>
+        <!-- end modal -->
+     
+     
+        <ul>
+            <% subject.forEach(subject => { %>
+                 <h2><%= subject.name %></h2>
+     
+                 <% if (subject.assignments.length > 0) { %>
+                     <% subject.assignments.forEach(assignment => { %>
+                         <li>Title: <%= assignment.title %></li>
+                         <li>Notes: <%= assignment.notes %></li>
+                         <li>Due Date: <%= assignment.dueDate.toDateString() %></li>
+                         <li>Time: <%= assignment.time %></li>
+                         <li>Progress: <%= assignment.progress %></li>
+                         <li>Link: <%= assignment.link %></li>
+                         <li>Grade: <%= assignment.grade %></li>
+         
+                         <!-- edit this for frontend -->
+                         <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>">View</a>
+                     <% }) %>
+                     <% } else { %>
+                      <p>You have no assignments due!</p>
+                 <% } %>
+     
             <% }) %>
+        </ul>
+    </main>
 
-       <% }) %>
-   </ul>
 
-
+    <footer>
+        footer
+    </footer>
 
 </body>
 </html>

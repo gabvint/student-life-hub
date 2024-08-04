@@ -6,6 +6,12 @@
     <title><%= assignment.title %> </title>
 </head>
 <body>
+
+    <aside>
+        <%- include('../partials/_navbar.ejs') %>
+    </aside>
+
+    
     <h1><%= subject.name %></h1>
 
         <p>Title: <%= assignment.title %></p>
@@ -22,6 +28,11 @@
         <form action="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>?_method=DELETE"
          method="POST">
             <button type="submit">Delete Assignment</button>
+        </form>
+
+        <form action="/users/<%= user._id %>/subjects/<%= subject._id %>?_method=DELETE"
+         method="POST">
+            <button type="submit">Delete Subject</button>
         </form>
 
 </body>
