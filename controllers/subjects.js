@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/user.js');
-const assignmentSchema = require('../models/assignment.js');
+
 
 // Everything starts with /users/:userId/subjects
 
@@ -68,24 +68,6 @@ router.post('/', async (req, res) => {
 })
 
 
-router.get('/:subjectId/:assignmentId', async (req, res) => {
-    try {  
-        const currUser = await User.findById(req.session.user._id)
-        const subject = currUser.subjects.id(req.params.subjectId)
-        const assignment = subject.assignments.id(req.params.assignmentId)
-
-        res.render('subjects/show.ejs', {
-            subject: subject, 
-            assignment: assignment,
-        })
-        
-    } catch (error) {
-        console.log(error)
-        res.redirect('/')
-    }
-
-})
-
 router.get('/:subjectId/:assignmentId/edit', async (req, res) => {
     try {
 
@@ -127,7 +109,7 @@ router.put('/:subjectId/:assignmentId', async (req, res) => {
 
         await currUser.save()
 
-        res.redirect(`/users/${req.session.user._id}/subjects`)
+        res.redirect(`/users/${req.session.user._id}/subjects/${req.params.subjectId}/${req.params.assignmentId}/edit`)
     } catch (error) {
         
     }
@@ -172,5 +154,7 @@ router.delete('/:subjectId/:assignmentId', async (req, res) => {
 //         res.redirect('/')
 //     }
 // })
+
+
 
 module.exports = router

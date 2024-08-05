@@ -1,7 +1,7 @@
 <nav>
     <% if (user) { %>
       <a href="/users/<%= user._id %>/subjects">My Assignments</a>
-      <a href="/">Subject Grades</a>
+      <a href="/users/<%= user._id %>/grades">Subject Grades</a>
       <a href="/auth/sign-out">Sign out</a>
      <% } else { %>
       <a href="/auth/sign-up">Sign up</a>

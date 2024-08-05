@@ -12,6 +12,7 @@ const passUserToView = require('./middleware/pass-user-to-view.js');
 
 const authController = require('./controllers/auth.js');
 const subjectsController = require('./controllers/subjects.js');
+const gradesController = require('./controllers/grades.js');
 
 
 
@@ -53,6 +54,7 @@ app.get('/', (req, res) => {
 app.use('/auth', authController);
 app.use(isSignedIn)
 app.use('/users/:userId/subjects', subjectsController);
+app.use('/users/:userId/grades', gradesController);
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

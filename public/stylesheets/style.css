@@ -9,7 +9,7 @@ body {
     min-height: 100vh;
 
     display: grid; 
-    grid-template-rows: auto 2fr;
+    grid-template-rows: 3fr auto;
     grid-template-columns: 300px 3fr;
 
 }
@@ -40,7 +40,7 @@ main {
     z-index: 2;
   }
   
-.modal .flex {
+.flex {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -66,4 +66,26 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.edit-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 450px;
+    padding: 1.3rem;
+    min-height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    z-index: 2;
+}
+
+.hide-edit{
+    display: none;
 }
