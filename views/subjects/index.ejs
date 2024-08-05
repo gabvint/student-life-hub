@@ -80,13 +80,16 @@
         <ul>
             <% let assignmentNotDone = false %>
 
+            
             <% subject.forEach(subject => { %>
-                 <h2><%= subject.name %></h2>
+
+                    <h2><%= subject.name %></h2>
+
      
                  <!-- if a subject has assignments and are not done yet -->
                  <% if (subject.assignments.length > 0) { %>
 
-                     <% subject.assignments.forEach(assignment => { %>
+                    <% subject.assignments.forEach(assignment => { %>
 
                         <% if (assignment.progress !== 'Done') { %>
 
@@ -108,9 +111,8 @@
                 
                     <!-- if all assignments are done -->
                     <% if (!assignmentNotDone) { %>
-                     <p>You have no assignments due!</p>
+                     <p>You are all caught up!</p>
                     <% } %>
-                    
 
                     <!-- end of if statement -->
                     <% } 
@@ -118,7 +120,7 @@
                     else { %>
                       <p>You have no assignments due!</p>
                     <% } %>
-     
+    
             <% }) %>
         </ul>
     </main>

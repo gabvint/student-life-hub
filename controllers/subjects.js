@@ -13,7 +13,6 @@ router.get('/', async (req, res) => {
         // finds all the subjects and assignments
         res.render('subjects/index.ejs', {
             subject: currUser.subjects, 
-            assignment: currUser.subjects.assignments,
         })
 
 
@@ -123,6 +122,11 @@ router.delete('/:subjectId/:assignmentId', async (req, res) => {
         const assignment = subject.assignments.id(req.params.assignmentId)
 
         assignment.deleteOne()
+
+        // if the subject object is empty, this automatically deleted
+        if (subject.assignments.length === 0){
+            subject.deleteOne()
+        }
 
         await currUser.save() // Save the changes to the user document
 

@@ -15,7 +15,34 @@
     </aside>
 
     <main>
-        hhello
+        <h1>My Grades</h1>
+
+        <ul>
+            <% subject.forEach(subject => { %>
+                
+                <h2><%= subject.name %></h2>
+
+                <% subject.assignments.forEach(assignment => { %>
+                    
+                    <table>
+                        <tr>
+                            <th>Title</th>
+                            <th>Link</th>
+                            <th>Progress</th>
+                            <th>Grade</th>
+                        </tr>
+
+                        <tr>
+                            <td><%= assignment.title %></td>
+                            <td><%= assignment.link %></td>
+                            <td><%= assignment.progress %></td>
+                            <td><%= assignment.grade %></td>
+                        </tr>
+                    </table>
+                <% }) %>
+            <% }) %>
+        </ul>
+
     </main>
     
     <footer>

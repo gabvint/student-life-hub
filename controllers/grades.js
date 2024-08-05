@@ -5,7 +5,14 @@ const User = require('../models/user.js');
 
 router.get('/', async (req, res) => {
     try {
-        res.render('grades/index.ejs')
+        const currUser = await User.findById(req.session.user._id)
+
+        // finds all the subjects and assignments
+        res.render('grades/index.ejs', {
+            subject: currUser.subjects, 
+         
+        })
+
 
     } catch (error) {
         console.log(error)
