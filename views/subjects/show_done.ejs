@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Done Assignments</title>
+    <script defer src="/js/app.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+
+    <aside>
+        <%- include('../partials/_navbar.ejs') %>
+    </aside>
+
+    <main>
+        <h1>Done Assignments</h1>
+
+        <ul>
+
+            <% subject.forEach(subject => { %>
+    
+                <!-- finds if a subject has progress done -->
+                <% hasDone = subject.assignments.find(assignment => assignment.progress === 'Done') %>
+    
+                <!-- if it has, only those subjects will be displayed -->
+                <% if (hasDone) { %>
+                    <h3><%= subject.name %></h3>
+    
+                    <% subject.assignments.forEach(assignment => { %>
+    
+                        <% if (assignment.progress === 'Done') { %>
+                            <li>Title: <%= assignment.title %></li>
+                            <li>Notes: <%= assignment.notes %></li>
+                            <li>Due Date: <%= assignment.dueDate.toDateString() %></li>
+                            <li>Time: <%= assignment.time %></li>
+                            <li>Progress: <%= assignment.progress %></li>
+                            <li>Link: <%= assignment.link %></li>
+                            <li>Grade: <%= assignment.grade %></li>
+
+                            <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">View</a>
+                        <% } %>
+                    <% }) %>
+    
+                <% } %>
+            <% }) %>
+        </ul>
+
+    </main>
+
+    <footer>
+        footer
+    </footer>
+</body>
+</html>

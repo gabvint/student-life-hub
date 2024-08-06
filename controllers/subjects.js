@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
 
         // finds all the subjects and assignments
         res.render('subjects/index.ejs', {
+            user: currUser,
             subject: currUser.subjects, 
         })
 
@@ -138,26 +139,22 @@ router.delete('/:subjectId/:assignmentId', async (req, res) => {
     }
 })
 
-// router to delete subject 
-// router.delete('/:subjectId', async (req, res) => {
-//     try {
-//         const currUser = await User.findById(req.session.user._id)
-//         const subject = currUser.subjects.id(req.params.subjectId)
 
-//         if (subject.assignments.length > 0){
-//             res.send(`You cannot delete this subject because you still have pending assignments!`)
-//         } else {
-//             subject.deleteOne()
-//             await currUser.save() 
-//         }
+// router for done assignment page 
+ router.get('/done', async (req, res) => {
+    try {
 
-//         res.redirect(`/users/${req.session.user._id}/subjects`)
+        const currUser = await User.findById(req.session.user._id)
+
+        res.render('subjects/show_done.ejs', {
+            subject: currUser.subjects,
+        })
         
-//     } catch (error) {
-//         console.log(error)
-//         res.redirect('/')
-//     }
-// })
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+    }
+ })
 
 
 

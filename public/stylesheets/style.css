@@ -7,6 +7,7 @@ body {
     margin: 0; 
     padding: 0;
     min-height: 100vh;
+    background-color: #fafafa;
 
     display: grid; 
     grid-template-rows: 3fr auto;
@@ -15,11 +16,11 @@ body {
 }
 
 aside {
-    background-color: antiquewhite;
+    background-color: #fafafa;
 }
 
 main {
-    background-color: aliceblue;
+    background-color: #ffff;
 }
 
 .modal {

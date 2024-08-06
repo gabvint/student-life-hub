@@ -54,7 +54,8 @@
         <input type="time" name="time" id="time" value="<%= time %>">
     
         <label for="progress">Progress:</label>
-        <select name="progress" id="progress" value="<%= assignment.progress %>">
+        <select name="progress" id="progress">
+            <option value="<%= assignment.progress %>"><%= assignment.progress %></option>
             <option value="Not yet Started">Not yet Started</option>
             <option value="In progress">In progress</option>
             <option value="For checking">For checking</option>
@@ -89,11 +90,6 @@
      method="POST">
         <button type="submit">Delete Assignment</button>
     </form>
-
-    
-
-
-
 
    </main>
 
