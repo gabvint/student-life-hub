@@ -1,11 +1,36 @@
-<nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script defer src="/js/app.js"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  
+</body>
+</html>
     <% if (user) { %>
-      <a href="/users/<%= user._id %>/subjects">My Assignments</a>
-      <a href="/users/<%= user._id %>/subjects/done">Done Assignments</a>
-      <a href="/users/<%= user._id %>/grades">Subject Grades</a>
-      <a href="/auth/sign-out">Sign out</a>
+
+      <div class="webname">
+        <p> Student Life Hub</p>
+      </div>
+      <div class="navbar-container">
+
+        <p>Menu</p>
+        <a href="/users/<%= user._id %>/subjects">My Assignments</a>
+        <a href="/users/<%= user._id %>/subjects/done">Done Assignments</a>
+        <a href="/users/<%= user._id %>/grades">Subject Grades</a>
+        <div class="spacer"></div>
+        <a class="sign-out" href="/auth/sign-out">Sign out</a>
+
+      </div>
+
+
+
      <% } else { %>
+
       <a href="/auth/sign-up">Sign up</a>
       <a href="/auth/sign-in">Sign in</a>
     <% } %>
-</nav>
