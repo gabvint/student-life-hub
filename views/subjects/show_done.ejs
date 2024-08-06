@@ -14,37 +14,47 @@
     </aside>
 
     <main>
-        <h1>Done Assignments</h1>
+        <div class="flex top-container">
+            <div>
+                <h2>Done Assignments</h2>
+                <p><%= user.firstName %>, here are your finished assignments!</p>
+            </div>
+        </div>
 
-        <ul>
-
-            <% subject.forEach(subject => { %>
+        <div class="mainIndex-container">
+            <ul>
     
-                <!-- finds if a subject has progress done -->
-                <% hasDone = subject.assignments.find(assignment => assignment.progress === 'Done') %>
-    
-                <!-- if it has, only those subjects will be displayed -->
-                <% if (hasDone) { %>
-                    <h3><%= subject.name %></h3>
-    
-                    <% subject.assignments.forEach(assignment => { %>
-    
-                        <% if (assignment.progress === 'Done') { %>
-                            <li>Title: <%= assignment.title %></li>
-                            <li>Notes: <%= assignment.notes %></li>
-                            <li>Due Date: <%= assignment.dueDate.toDateString() %></li>
-                            <li>Time: <%= assignment.time %></li>
-                            <li>Progress: <%= assignment.progress %></li>
-                            <li>Link: <%= assignment.link %></li>
-                            <li>Grade: <%= assignment.grade %></li>
-
-                            <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">View</a>
+                <% subject.forEach(subject => { %>
+        
+                    <!-- finds if a subject has progress done -->
+                    <% hasDone = subject.assignments.find(assignment => assignment.progress === 'Done') %>
+        
+                    <div>
+                        <!-- if it has, only those subjects will be displayed -->
+                        <% if (hasDone) { %>
+                            <h3><%= subject.name %></h3>
+            
+                            <% subject.assignments.forEach(assignment => { %>
+            
+                                <% if (assignment.progress === 'Done') { %>
+                                    
+                                    <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">
+                                        <div class="assignment-card">
+                                            <p>Title: <%= assignment.title %></p>
+                                            <p>Due Date: <%= assignment.dueDate.toDateString() %></p>
+                                            <p>Time: <%= assignment.time %></p>
+                                            <p>Progress: <%= assignment.progress %></p>
+                                        </div>
+                                    </a>
+                                <% } %>
+                            <% }) %>
+            
                         <% } %>
-                    <% }) %>
-    
-                <% } %>
-            <% }) %>
-        </ul>
+                    </div>
+                <% }) %>
+            </ul>
+
+        </div>
 
     </main>
 

@@ -148,6 +148,7 @@ router.delete('/:subjectId/:assignmentId', async (req, res) => {
 
         res.render('subjects/show_done.ejs', {
             subject: currUser.subjects,
+            user: currUser,
         })
         
     } catch (error) {
