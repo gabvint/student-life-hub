@@ -22,7 +22,7 @@
                 
                 <h2><%= subject.name %></h2>
 
-                <% subject.assignments.forEach(assignment => { %>
+               
                     
                     <table>
                         <tr>
@@ -32,14 +32,19 @@
                             <th>Grade</th>
                         </tr>
 
-                        <tr>
-                            <td><%= assignment.title %></td>
-                            <td><%= assignment.link %></td>
-                            <td><%= assignment.progress %></td>
-                            <td><%= assignment.grade %></td>
-                        </tr>
+                        <% subject.assignments.forEach(assignment => { %>
+                         
+                            <tr>
+                                <td><%= assignment.title %></td>
+                                <td><%= assignment.link %></td>
+                                <td><%= assignment.progress %></td>
+                                <td><%= assignment.grade %></td>
+                            </tr>
+
+                        <% }) %>
+
                     </table>
-                <% }) %>
+               
             <% }) %>
         </ul>
 
