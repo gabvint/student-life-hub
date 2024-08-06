@@ -91,43 +91,45 @@
                 
                 <% subject.forEach(subject => { %>
     
-                        <h2><%= subject.name %></h2>
+                        <h3><%= subject.name %></h3>
     
          
-                     <!-- if a subject has assignments and are not done yet -->
-                     <% if (subject.assignments.length > 0) { %>
-    
-                        <% subject.assignments.forEach(assignment => { %>
-    
-                            <% if (assignment.progress !== 'Done') { %>
-    
-                                <li>Title: <%= assignment.title %></li>
-                                <li>Notes: <%= assignment.notes %></li>
-                                <li>Due Date: <%= assignment.dueDate.toDateString() %></li>
-                                <li>Time: <%= assignment.time %></li>
-                                <li>Progress: <%= assignment.progress %></li>
-                                <li>Link: <%= assignment.link %></li>
-                                <li>Grade: <%= assignment.grade %></li>
-                                
-                                
-                                <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">View</a>
-    
-                                <% assignmentNotDone = true %>
-                            <% } %>
-    
-                        <% }) %>
-                    
-                        <!-- if all assignments are done -->
-                        <% if (!assignmentNotDone) { %>
-                         <p>You are all caught up!</p>
-                        <% } %>
-    
-                        <!-- end of if statement -->
-                        <% } 
-                        
-                        else { %>
-                          <p>You have no assignments due!</p>
-                        <% } %>
+                    <div class="flex">
+                        <!-- if a subject has assignments and are not done yet -->
+                        <% if (subject.assignments.length > 0) { %>
+       
+                           <% subject.assignments.forEach(assignment => { %>
+       
+                               <% if (assignment.progress !== 'Done') { %>
+                                   
+                                   <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">
+                                     
+                                       <div class="assignment-card">
+                                           <p>Title: <%= assignment.title %></p>
+                                           <p>Due Date: <%= assignment.dueDate.toDateString() %></p>
+                                           <p>Time: <%= assignment.time %></p>
+                                           <p>Progress: <%= assignment.progress %></p>
+                                       </div>
+   
+                                   </a>
+       
+                                   <% assignmentNotDone = true %>
+                               <% } %>
+       
+                           <% }) %>
+                       
+                           <!-- if all assignments are done -->
+                           <% if (!assignmentNotDone) { %>
+                            <p>You are all caught up!</p>
+                           <% } %>
+       
+                           <!-- end of if statement -->
+                           <% } 
+                           
+                           else { %>
+                             <p>You have no assignments due!</p>
+                           <% } %>
+                    </div>
         
                 <% }) %>
             </ul>

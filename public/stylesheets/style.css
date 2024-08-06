@@ -173,3 +173,17 @@ main {
  
 }
 
+.assignment-card {
+    background-color: #ffff ;
+    padding: 20px;
+    width: 250px;
+    height: 200px;
+    border-radius: 10px;
+    border: 2px solid #fafafa;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.mainIndex-container  a {
+    text-decoration: none;
+}
