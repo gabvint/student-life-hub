@@ -13,8 +13,13 @@
     </aside>
 
     <main>
-        <h1>Welcome, <%= user.firstName %></h1>
-        <h2>Assignments</h2> 
+        <div class="flex top-container">
+            <div>
+                <h2>Welcome, <%= user.firstName %></h2>
+                <p>Here are your assignments!</p>
+            </div>
+            <button class="addBtn btn-open">Add Assignment</button>
+        </div>
      
         <!-- will be used for a modal -->
         <section class="modal hidden">
@@ -72,58 +77,61 @@
      
         </section>
         <div class="overlay hidden"></div>
-        <button class="addBtn btn-open">Add Assignment</button>
-
-
+    
         <!-- end modal -->
      
-        <!-- display all tasks that are not yet completed -->
-        <ul>
-            <% let assignmentNotDone = false %>
 
-            
-            <% subject.forEach(subject => { %>
+        <div class="mainIndex-container">
 
-                    <h2><%= subject.name %></h2>
-
-     
-                 <!-- if a subject has assignments and are not done yet -->
-                 <% if (subject.assignments.length > 0) { %>
-
-                    <% subject.assignments.forEach(assignment => { %>
-
-                        <% if (assignment.progress !== 'Done') { %>
-
-                            <li>Title: <%= assignment.title %></li>
-                            <li>Notes: <%= assignment.notes %></li>
-                            <li>Due Date: <%= assignment.dueDate.toDateString() %></li>
-                            <li>Time: <%= assignment.time %></li>
-                            <li>Progress: <%= assignment.progress %></li>
-                            <li>Link: <%= assignment.link %></li>
-                            <li>Grade: <%= assignment.grade %></li>
-                            
-                            
-                            <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">View</a>
-
-                            <% assignmentNotDone = true %>
-                        <% } %>
-
-                    <% }) %>
-                
-                    <!-- if all assignments are done -->
-                    <% if (!assignmentNotDone) { %>
-                     <p>You are all caught up!</p>
-                    <% } %>
-
-                    <!-- end of if statement -->
-                    <% } 
-                    
-                    else { %>
-                      <p>You have no assignments due!</p>
-                    <% } %>
+        
+            <!-- display all tasks that are not yet completed -->
+            <ul>
+                <% let assignmentNotDone = false %>
     
-            <% }) %>
-        </ul>
+                
+                <% subject.forEach(subject => { %>
+    
+                        <h2><%= subject.name %></h2>
+    
+         
+                     <!-- if a subject has assignments and are not done yet -->
+                     <% if (subject.assignments.length > 0) { %>
+    
+                        <% subject.assignments.forEach(assignment => { %>
+    
+                            <% if (assignment.progress !== 'Done') { %>
+    
+                                <li>Title: <%= assignment.title %></li>
+                                <li>Notes: <%= assignment.notes %></li>
+                                <li>Due Date: <%= assignment.dueDate.toDateString() %></li>
+                                <li>Time: <%= assignment.time %></li>
+                                <li>Progress: <%= assignment.progress %></li>
+                                <li>Link: <%= assignment.link %></li>
+                                <li>Grade: <%= assignment.grade %></li>
+                                
+                                
+                                <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">View</a>
+    
+                                <% assignmentNotDone = true %>
+                            <% } %>
+    
+                        <% }) %>
+                    
+                        <!-- if all assignments are done -->
+                        <% if (!assignmentNotDone) { %>
+                         <p>You are all caught up!</p>
+                        <% } %>
+    
+                        <!-- end of if statement -->
+                        <% } 
+                        
+                        else { %>
+                          <p>You have no assignments due!</p>
+                        <% } %>
+        
+                <% }) %>
+            </ul>
+        </div>
     </main>
 
 

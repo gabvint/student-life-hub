@@ -26,7 +26,8 @@ aside {
 }
 
 main {
-    background-color: #ffff;
+    background-color: #fafafa;
+    padding: 20px;
 }
 
 .modal {
@@ -102,11 +103,12 @@ main {
     min-width: 200px;
     margin-top: 10%;
     border-radius: 10px;
+   
+}
+.webname p {
     font-weight: 800;
     font-size: 18px;
 }
-
-
 .navbar-container {
     margin-top: 10%;
     background-color: #ffff;
@@ -137,6 +139,7 @@ main {
     cursor: pointer;
     background-color: black;
     color: #ffff;
+    transition: 0.5s;
 }
 
 .spacer{
@@ -145,7 +148,28 @@ main {
 
 .sign-out {
     margin-top: auto;
-  }
+}
 
+.top-container {
+    background-color: #ffff;
+    padding: 5px 20px 5px 20px;  /* Adjust the padding to make it smaller */
+    border-radius: 10px;
+}
 
+.top-container h2 {
+    margin-bottom: 0;
+}
+.top-container p{
+    margin-top: 0.5em;
+    font-size: 15px;
+    color: #808080;
+}
+
+.mainIndex-container {
+    background-color: #ffff;
+    margin-top: 20px;
+    border-radius: 10px;
+    display: flex;
+ 
+}
 
