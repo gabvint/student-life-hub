@@ -80,7 +80,13 @@
     <p>Due Date: <%= assignment.dueDate.toDateString() %></p>
     <p>Time: <%= assignment.time %></p>
     <p>Progress: <%= assignment.progress %></p>
-    <p>Link: <a href="<%= assignment.link %>" target="_blank"><%= assignment.link %></a></p>
+    <p>Link: 
+        <% if (assignment.link === 'none') { %>
+            none
+        <% } else { %>
+            <a href="<%= assignment.link %>" target="_blank"><%= assignment.link %></a>
+        <% } %> 
+    </p>
     <p>Grade: <%= assignment.grade %></p>
 
 

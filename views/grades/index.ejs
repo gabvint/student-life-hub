@@ -39,6 +39,7 @@
                                    <th>Title</th>
                                    <th>Progress</th>
                                    <th>Grade</th>
+                                   <th>Actions</th>
                                </tr>
                            </thead>
     
@@ -49,6 +50,8 @@
                                    <td><%= assignment.title %></td>
                                    <td><%= assignment.progress %></td>
                                    <td><%= assignment.grade %></td>
+
+                                   <td><a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">View</a></td>
                                </tr>
                            <% }) %>
     
