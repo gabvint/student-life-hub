@@ -8,15 +8,21 @@ const User = require('../models/user.js');
 
 router.get('/', async (req, res) => {
     try {
+    
+        if (!req.session.user){
+            res.redirect('auth/sign-up.ejs')
+        }
+
         const currUser = await User.findById(req.session.user._id)
+            // finds all the subjects and assignments
 
-        // finds all the subjects and assignments
-        res.render('subjects/index.ejs', {
-            user: currUser,
-            subject: currUser.subjects, 
-        })
-
-
+        if (currUser){
+            res.render('subjects/index.ejs', {
+                    user: currUser,
+                    subject: currUser.subjects, 
+                })
+        }
+    
     } catch (error) {
         console.log(error)
         res.redirect('/')
@@ -30,6 +36,7 @@ router.post('/', async (req, res) => {
         const currentUser = await User.findById(req.session.user)
         const subjectName = req.body.name
         const assignment = req.body
+        
         
         // since these fields aren't required, we are temporarily storing values for it 
         if (assignment.notes === ''){
@@ -103,8 +110,10 @@ router.put('/:subjectId/:assignmentId', async (req, res) => {
         const subject = currUser.subjects.id(req.params.subjectId)
         const assignment = subject.assignments.id(req.params.assignmentId)
 
-        subject.set(req.body)
-        assignment.set(req.body)
+
+            subject.set(req.body)
+            assignment.set(req.body)
+        
 
 
         await currUser.save()

@@ -16,40 +16,52 @@
 
     <main>
 
-        <div>
-            <h2>My Grades</h2>
+        <div class="top-container">
+            <div>
+                <h2>My Grades</h2>
+                <p>Note that grades are not final!</p>
+            </div>
+
         </div>
 
-        <ul>
-            <% subject.forEach(subject => { %>
-                
-                <h2><%= subject.name %></h2>
 
-               
+        <div class="mainIndex-container">
+
+    
+            <ul>
+                <% subject.forEach(subject => { %>
                     
-                    <table>
-                        <tr>
-                            <th>Title</th>
-                            <th>Link</th>
-                            <th>Progress</th>
-                            <th>Grade</th>
-                        </tr>
+                    <h2><%= subject.name %></h2>
 
-                        <% subject.assignments.forEach(assignment => { %>
-                         
-                            <tr>
-                                <td><%= assignment.title %></td>
-                                <td><%= assignment.link %></td>
-                                <td><%= assignment.progress %></td>
-                                <td><%= assignment.grade %></td>
-                            </tr>
-
-                        <% }) %>
-
-                    </table>
-               
-            <% }) %>
-        </ul>
+                       <table class="table-container">
+                           <thead>
+                               <tr>
+                                   <th>Title</th>
+                                   <th>Progress</th>
+                                   <th>Grade</th>
+                               </tr>
+                           </thead>
+    
+                           <tbody>
+    
+                           <% subject.assignments.forEach(assignment => { %>
+                               <tr>
+                                   <td><%= assignment.title %></td>
+                                   <td><%= assignment.progress %></td>
+                                   <td><%= assignment.grade %></td>
+                               </tr>
+                           <% }) %>
+    
+                           </tbody>
+    
+    
+                       </table>
+      
+                        
+                   
+                <% }) %>
+            </ul>
+        </div>
 
     </main>
     
