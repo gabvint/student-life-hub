@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Expenses</title>
+    <script defer src="/js/app.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <aside>
+        <%- include('../partials/_navbar.ejs') %>
+    </aside>
+
+    <main>
+        <!-- modal for adding expenses  -->
+        <section class="expenses-modal hide-expenses">
+            <div class="flex">
+                <h3>Add Expenses</h3>
+                <button class="btn-close expensesBtn-close">⨉</button>
+            </div>
+
+
+            <form class="format-add" action="/users/<%= user._id %>/expenses" method="POST">
+
+                <label for="description">Description:</label>
+                <input type="text" name="description" id="description">
+
+                <label for="date">Date:</label>
+                <input type="date" name="date" id="date">
+
+                <label for="amount">Amount:</label>
+                <input type="number" name="number" id="number">
+
+                <button class="submit-btn" type="submit">Submit</button>
+                
+            </form>
+        </section>
+        <div class="overlay hide-expenses"></div>
+
+        <!-- end of modal -->
+
+        <div class=" flex top-container">
+            <div>
+                <h2>My Expenses</h2>
+                <p>Track your expenses here!</p>
+            </div>
+            <button class="addBtn expensesBtn-open">Add expenses</button>
+        </div>
+
+
+
+        <div class="mainIndex-container">
+
+            
+
+            
+        </div>
+    </main>
+</body>
+</html>

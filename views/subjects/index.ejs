@@ -13,14 +13,6 @@
     </aside>
 
     <main>
-        <div class="flex top-container">
-            <div>
-                <h2>Welcome, <%= user.firstName %></h2>
-                <p>Here are your assignments!</p>
-            </div>
-            <button class="addBtn btn-open">Add Assignment</button>
-        </div>
-     
         <!-- will be used for a modal -->
         <section class="modal hidden">
             <div class="flex">
@@ -72,13 +64,21 @@
              <label for="grade">Grade:</label>
              <input type="number" name="grade" id="grade">
      
-             <button type="submit">Submit</button>
+             <button class="submit-btn" type="submit">Submit</button>
              </form> 
      
         </section>
         <div class="overlay hidden"></div>
     
         <!-- end modal -->
+     
+        <div class="flex top-container">
+            <div>
+                <h2>Welcome, <%= user.firstName %></h2>
+                <p>Here are your assignments!</p>
+            </div>
+            <button class="addBtn btn-open">Add Assignment</button>
+        </div>
      
 
         <div class="mainIndex-container">

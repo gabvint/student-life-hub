@@ -39,7 +39,7 @@
                                                     <% if (assignment.progress === 'Done') { %>
                                                         
                                                         <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">
-                                                            <div class="assignment-card">
+                                                            <div class="assignment-card" draggable="true">
                                                                 <p class="title"><%= assignment.title %></p>
                                                                 <p><%= assignment.dueDate.toDateString() %></p>
                                                                 <p><%= assignment.time %></p>

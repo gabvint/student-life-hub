@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const subjectSchema = require('./subject.js');
-
+const expensesSchema = require('./expenses.js');
 
 const userSchema = mongoose.Schema({
   
@@ -30,6 +30,8 @@ const userSchema = mongoose.Schema({
   },
 
   subjects: [subjectSchema],
+
+  expenses: [expensesSchema],
 });
 
 const User = mongoose.model('User', userSchema);
