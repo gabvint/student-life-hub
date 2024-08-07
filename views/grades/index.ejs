@@ -7,6 +7,8 @@
     <script defer src="/js/app.js"></script>
     <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
+
+
 <body>
     
     
@@ -29,9 +31,25 @@
 
     
             <ul>
+
                 <% subject.forEach(subject => { %>
                     
+                    <%   function computeAverage(assignment){
+                        let total = 0
+                        if (assignment.length === 0){
+                            return 0
+                        } else {
+                            assignment.forEach(assignment => {
+                                total += assignment.grade
+                            })
+                    
+                            return total / assignment.length
+                    
+                        }
+                    }  %>
+
                     <h2><%= subject.name %></h2>
+
 
                        <table class="table-container">
                            <thead>
@@ -55,12 +73,16 @@
                                </tr>
                            <% }) %>
     
+                           <tr>
+                                <td colspan="2"><strong>Average Grade</strong></td>
+                                <td><%= computeAverage(subject.assignments).toFixed(2)%></td>
+                                <td></td>
+                            </tr>
+
                            </tbody>
     
     
-                       </table>
-      
-                        
+                        </table>
                    
                 <% }) %>
             </ul>
@@ -68,8 +90,11 @@
 
     </main>
     
+
+
     <footer>
         footer
     </footer>
+ 
 </body>
 </html>

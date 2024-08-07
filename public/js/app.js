@@ -33,6 +33,8 @@ const closeEditModal = function (){
     editModal.classList.add("hide-edit")
     overlay.classList.add("hide-edit")
 }
+
+
 /*----------- Event Listeners ----------*/
 
 if (openAddBtn && closeAddBtn) {
