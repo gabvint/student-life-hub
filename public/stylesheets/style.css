@@ -3,7 +3,9 @@
 /* #ff4848 - red not yet started
 #add8e6 - blue in progress
 #fed8b1 - orange for checking
-#bee3ba - green done*/
+#bee3ba - green done
+#808080 - grey
+#fafafa - light grey*/
 
 *{
    box-sizing: border-box;
@@ -194,21 +196,53 @@ main {
  
 }
 
+.flex a{
+    color: #808080;
+
+}
 .assignment-card {
     background-color: #ffff ;
     padding: 20px;
-    width: 250px;
-    height: 200px;
-    border-radius: 10px;
-    border: 2px solid #fafafa;
+    width: 220px;
+    height: 185px;
+    border-radius: 20px;
+    border: 3px solid #fafafa;
     font-size: 15px;
     margin-right: 10px;
+    display: flex;
+    flex-direction: column;
 }
+
+.assignment-card .title {
+    color: black;
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.assignment-card p {
+    margin-top: 0.2em;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.assignment-card .progress {
+    margin-bottom: 0;
+    color: black;
+    font-weight: 600;   
+    font-size: 15px;
+}
+
 
 .mainIndex-container a {
     text-decoration: none;
 }
 
+.flex-done{
+    display: flex;
+    flex-direction: column;
+}
 
 .table-container {
     border-collapse: collapse;

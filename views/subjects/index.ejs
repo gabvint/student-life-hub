@@ -105,10 +105,11 @@
                                    <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">
                                      
                                        <div class="assignment-card">
-                                           <p>Title: <%= assignment.title %></p>
-                                           <p>Due Date: <%= assignment.dueDate.toDateString() %></p>
-                                           <p>Time: <%= assignment.time %></p>
-                                           <p>Progress: <%= assignment.progress %></p>
+                                           <p class="title"><%= assignment.title %></p>
+                                           <p><%= assignment.dueDate.toDateString() %></p>
+                                           <p><%= assignment.time %></p>
+                                           <div class="spacer"></div>
+                                           <p class="progress"><%= assignment.progress %></p>
                                        </div>
    
                                    </a>

@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
         const subjectName = req.body.name
         const assignment = req.body
         
-        
+
         // since these fields aren't required, we are temporarily storing values for it 
         if (assignment.notes === ''){
             assignment.notes = 'none'
@@ -99,7 +99,7 @@ router.get('/:subjectId/:assignmentId/edit', async (req, res) => {
             time: time,
         })
     } catch (error) {
-        console.log(error)
+        console.log(error) 
         res.redirect('/')   
     }
 })
