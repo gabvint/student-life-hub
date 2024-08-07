@@ -52,6 +52,24 @@
 
         <div class="mainIndex-container">
 
+            <ul>
+                <table>
+                    <thead>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </thead>
+                <% expenses.forEach(expense => { %>
+                  
+                    <tr>
+                        <td><%= expense.description %></td>
+                        <td><%= expense.date.toLocaleDateString() %></td>
+                        <td>$<%= expense.amount %>.00</td>
+                    </tr>
+                    <% }) %>
+                </table>
+            </ul>
 
 
             

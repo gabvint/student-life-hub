@@ -6,9 +6,10 @@ const User = require('../models/user.js');
 router.get('/', async (req, res) => {
     try {
         const currUser = await User.findById(req.session.user._id)
-
+        const expenses = currUser.expenses
         res.render('expenses/index.ejs', {
             user: currUser,
+            expenses: expenses,
         })
 
     } catch (error) {
