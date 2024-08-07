@@ -3,6 +3,7 @@ const router = express.Router();
 
 const User = require('../models/user.js');
 
+// everything starts with /users/:userId/expenses
 router.get('/', async (req, res) => {
     try {
         const currUser = await User.findById(req.session.user._id)
@@ -19,5 +20,7 @@ router.get('/', async (req, res) => {
         res.redirect('/')
     }
 })
+
+
 
 module.exports = router

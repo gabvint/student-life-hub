@@ -16,6 +16,9 @@ const expensesModal = document.querySelector('.expenses-modal')
 const openExpensesBtn = document.querySelector('.expensesBtn-open')
 const closeExpensesBtn = document.querySelector('.expensesBtn-close')
 
+const editExpModal = document.querySelector('.editExp-modal')
+const openEditExpBtn = document.querySelector('.editExp-open')
+const closeEditExpBtn = document.querySelector('.editExp-close')
 /*-------------- Functions -------------*/
 
 const openModal = function () {
@@ -47,6 +50,15 @@ const closeExpensesModal = function () {
     overlay.classList.add("hide-expenses")
 }
 
+const openEditExpModal = function () {
+    editExpModal.classList.remove("hide-editExp")
+    overlay.classList.remove("hide-editExp")
+}
+const closeEditExpModal = function () {
+    editExpModal.classList.add("hide-editExp")
+    overlay.classList.add("hide-editExp")
+}
+
 
 /*----------- Event Listeners ----------*/
 
@@ -63,6 +75,11 @@ if (openEditBtn && closeEditBtn) {
 if (openExpensesBtn && closeExpensesBtn) {
     openExpensesBtn.addEventListener("click", openExpensesModal);
     closeExpensesBtn.addEventListener("click", closeExpensesModal);
+}
+
+if (openEditExpBtn && closeEditExpBtn) {
+    openEditExpBtn.addEventListener("click", openEditExpModal);
+    closeEditExpBtn.addEventListener("click", closeEditExpModal);
 }
 
 });

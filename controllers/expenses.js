@@ -39,4 +39,28 @@ router.post('/', async (req, res) => {
         res.redirect('/')
     }
 })
+
+router.get('/:expensesId/edit', async (req, res) => {
+    try {
+        const currUser = await User.findById(req.session.user._id)
+        const expense = currUser.expenses.id(req.params.expensesId)
+
+        //formatting for the date 
+        const date = new Date(expense.date)
+        const localDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
+        const dateFormatted = localDate.toISOString().split('T')[0]
+
+
+        res.render('expenses/edit.ejs', {
+            expense: expense, 
+            date: dateFormatted, 
+        })
+    
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+
+    }
+})
+
 module.exports = router

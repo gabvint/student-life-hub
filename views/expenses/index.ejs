@@ -66,6 +66,9 @@
                         <td><%= expense.description %></td>
                         <td><%= expense.date.toLocaleDateString() %></td>
                         <td>$<%= expense.amount %>.00</td>
+                        <td>
+                            <a href="/users/<%= user._id %>/expenses/<%= expense._id %>/edit">View</a>
+                        </td>
                     </tr>
                     <% }) %>
                 </table>
