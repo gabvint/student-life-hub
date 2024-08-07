@@ -19,9 +19,19 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const currUser = await User.findById(req.session.user._id)
-        
+        const currUser = await User.findById(req.session.user)
 
+        let newExpense = {
+            description: req.body.description, 
+            date: req.body.date, 
+            amount: req.body.amount,
+        }
+
+        currUser.expenses.push(newExpense)
+
+        await currUser.save();
+
+        res.redirect(`/users/${req.session.user._id}/expenses`)
 
     }catch (error) {
         console.log(error)
