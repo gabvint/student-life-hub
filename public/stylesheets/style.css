@@ -235,6 +235,11 @@ main {
     border: 1px solid black;
 }
 
+.addBtn i {
+    margin-right: 8px;
+}
+
+
 .mainIndex-container {
     background-color: #ffff;
     margin-top: 20px;
