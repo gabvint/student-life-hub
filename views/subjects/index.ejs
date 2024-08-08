@@ -44,11 +44,14 @@
              <label for="notes">Notes:</label>
              <textarea name="notes" id="notes"></textarea>
      
-             <label for="dueDate">Due date:</label>
-             <input type="date" name="dueDate" id="dueDate" required>
-     
-             <label for="time">Time:</label>
-             <input type="time" name="time" id="time">
+             <div>
+
+                 <label for="dueDate">Due date:</label>
+                 <input type="date" name="dueDate" id="dueDate" required>
+         
+                 <label for="time">Time:</label>
+                 <input type="time" name="time" id="time">
+             </div>
      
              <label for="progress">Progress:</label>
              <select name="progress" id="progress" required>
@@ -64,7 +67,9 @@
              <label for="grade">Grade:</label>
              <input type="number" name="grade" id="grade">
      
-             <button class="submit-btn" type="submit">Submit</button>
+             <div>
+                 <button class="submit-btn" type="submit">Submit</button>
+             </div>
              </form> 
      
         </section>
@@ -88,6 +93,7 @@
             <ul>
                 <% let assignmentNotDone = false %>
     
+                
                 <% subject.forEach(subject => { %>
     
                         <h3><%= subject.name %></h3>
@@ -103,7 +109,7 @@
                                    
                                    <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">
                                      
-                                       <div class="assignment-card">
+                                       <div class="assignment-card jump">
                                            <p class="title"><%= assignment.title %></p>
                                            <p><%= assignment.dueDate.toDateString() %></p>
                                            <p><%= assignment.time %></p>
@@ -129,7 +135,6 @@
                            else { %>
                              <p>You have no assignments due!</p>
                            <% } %>
-
                     </div>
         
                 <% }) %>

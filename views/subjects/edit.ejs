@@ -17,85 +17,107 @@
     
    <main>
 
-    <section class="edit-modal hide-edit">
-        <div class="flex">
-            <h3>Edit Assignment</h3>
-            <button class="editBtn-close">⨉</button>
-        </div>
+        <section class="edit-modal hide-edit">
+            <div class="flex">
+                <h3>Edit Assignment</h3>
+                <button class="editBtn-close">⨉</button>
+            </div>
+                
+            <form class="format-add" action="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>?_method=PUT" 
+            method="POST">
+        
+            <!-- data for subjects -->
+            <label for="name">Subject:</label>
+            <input list="predefined-subjects" name="name" id="name" value="<%= subject.name %>">
+            <datalist id="predefined-subjects">
+                <option value="Math">
+                <option value="Science">
+                <option value="Physical Education">
+                <option value="Art">
+                <option value="Foreign Language">
+                <option value="History">
+                <option value="Music">
+                <option value="Computer">
+            </datalist>
+        
+            <!-- data for assignment -->
+            <label for="title">Name:</label>
+            <input type="text" name="title" id="title" value="<%= assignment.title %>">
+        
+            <label for="notes">Notes:</label>
+            <textarea name="notes" id="notes"><%= assignment.notes %></textarea>
+        
+            <div>
+                <label for="dueDate">Due date:</label>
+                <input type="date" name="dueDate" id="dueDate" value="<%= date %>">
             
-        <form class="format-add" action="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>?_method=PUT" 
-        method="POST">
-    
-        <!-- data for subjects -->
-        <label for="name">Subject:</label>
-        <input list="predefined-subjects" name="name" id="name" value="<%= subject.name %>">
-        <datalist id="predefined-subjects">
-            <option value="Math">
-            <option value="Science">
-            <option value="Physical Education">
-            <option value="Art">
-            <option value="Foreign Language">
-            <option value="History">
-            <option value="Music">
-            <option value="Computer">
-        </datalist>
-    
-        <!-- data for assignment -->
-        <label for="title">Name:</label>
-        <input type="text" name="title" id="title" value="<%= assignment.title %>">
-    
-        <label for="notes">Notes:</label>
-        <textarea name="notes" id="notes"><%= assignment.notes %></textarea>
-    
-        <label for="dueDate">Due date:</label>
-        <input type="date" name="dueDate" id="dueDate" value="<%= date %>">
-    
-        <label for="time">Time:</label>
-        <input type="time" name="time" id="time" value="<%= time %>">
-    
-        <label for="progress">Progress:</label>
-        <select name="progress" id="progress">
-            <option value="<%= assignment.progress %>"><%= assignment.progress %></option>
-            <option value="Not yet Started">Not yet Started</option>
-            <option value="In progress">In progress</option>
-            <option value="For checking">For checking</option>
-            <option value="Done">Done</option>
-        </select>
-    
-        <label for="link">Links:</label>
-        <input type="text" name="link" id="link" value="<%= assignment.link %>">
-    
-        <label for="grade">Grade:</label>
-        <input type="number" name="grade" id="grade" value="<%= assignment.grade %>">
-    
-        <button type="submit">Submit</button>
-        </form> 
-    </section>
-    <div class="overlay hide-edit"></div>
+                <label for="time">Time:</label>
+                <input type="time" name="time" id="time" value="<%= time %>">
+            </div>
+        
+            <label for="progress">Progress:</label>
+            <select name="progress" id="progress">
+                <option value="<%= assignment.progress %>"><%= assignment.progress %></option>
+                <option value="Not yet Started">Not yet Started</option>
+                <option value="In progress">In progress</option>
+                <option value="For checking">For checking</option>
+                <option value="Done">Done</option>
+            </select>
+        
+            <label for="link">Links:</label>
+            <input type="text" name="link" id="link" value="<%= assignment.link %>">
+        
+            <label for="grade">Grade:</label>
+            <input type="number" name="grade" id="grade" value="<%= assignment.grade %>">
+        
+            <div>
+                <button class="submit-btn" type="submit">Submit</button>
+            </div>
+            </form> 
+        </section>
+        <div class="overlay hide-edit"></div>
 
-    <h1><%= subject.name %></h1>
+        <div class="flex top-container">
+            <div>
+                <h2>Welcome, <%= user.firstName %></h2>
+                <p>Here is your assignments, under the subject <strong><%= subject.name %>!</strong></p>
+            </div>
+        </div>
+
+        <div class="show-mainIndex-container">
+
+            <div class="show-assignment-card">
+                <p class="title"><%= assignment.title %></p>
+                <p><strong>Notes: </strong> <%= assignment.notes %></p>
+                <p><strong>Due Date:</strong> <%= assignment.dueDate.toDateString() %></p>
+                <p><strong> Time:</strong> <%= assignment.time %></p>
+                <p><strong>Progress:</strong> <%= assignment.progress %></p>
+                <p><strong>Link:</strong>
+                    <% if (assignment.link === 'none') { %>
+                        none
+                    <% } else { %>
+                        <a href="<%= assignment.link %>" target="_blank"><%= assignment.link %></a>
+                    <% } %> 
+                </p>
+                <p><strong>Grade:</strong> <%= assignment.grade %></p>
+            
+            
+                <div class="flex-btns">
+
+                    <!-- editExp-open is the css recycled from the expenses page -->
+                    <button class="editExp-open editBtn-open">Edit</button>
+                
+                    <form action="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>?_method=DELETE"
+                    method="POST">
+                        <button class="deleteBtn" type="submit">Delete</button>
+                    </form>
+                </div>
     
-    <p>Title: <%= assignment.title %></p>
-    <p>Notes: <%= assignment.notes %></p>
-    <p>Due Date: <%= assignment.dueDate.toDateString() %></p>
-    <p>Time: <%= assignment.time %></p>
-    <p>Progress: <%= assignment.progress %></p>
-    <p>Link: 
-        <% if (assignment.link === 'none') { %>
-            none
-        <% } else { %>
-            <a href="<%= assignment.link %>" target="_blank"><%= assignment.link %></a>
-        <% } %> 
-    </p>
-    <p>Grade: <%= assignment.grade %></p>
+            </div>
+            
 
+        </div>
 
-    <button class="editBtn-open">Edit</button>
-
-    <form action="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>?_method=DELETE"
-     method="POST">
-        <button type="submit">Delete Assignment</button>
-    </form>
 
    </main>
 

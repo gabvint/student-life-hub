@@ -61,6 +61,7 @@ main {
     justify-content: space-between;
 }
 
+
 .overlay {
     position: fixed;
     top: 0;
@@ -82,6 +83,41 @@ main {
     flex-direction: column;
     justify-content: center;
 }
+
+.format-add label {
+    margin-bottom: 8px;
+}
+
+.format-add input {
+    margin-bottom: 8px;
+    margin-left: 10px;
+    margin-right: 10px;
+} 
+
+.format-add textarea {
+    margin-bottom: 10px;
+} 
+
+
+.modal-title h3 {
+    margin-left: 10px;
+}
+
+.editBtn-close,
+.btn-close {
+    border-radius: 50%;
+    padding: 5px 10px;
+    border: none;
+    background-color: #fed8b1;
+}
+
+.editBtn-close:hover,
+.btn-close:hover{
+    background-color: #ffff;
+    border: 2px solid #fed8b1;
+}
+
+
 
 .edit-modal {
     display: flex;
@@ -193,6 +229,7 @@ main {
     margin-top: 20px;
     border-radius: 10px;
     display: flex;
+    min-height: 700px;
  
 }
 
@@ -208,7 +245,7 @@ main {
     border-radius: 20px;
     border: 3px solid #fafafa;
     font-size: 15px;
-    margin-right: 10px;
+    margin-right: 15px;
     display: flex;
     flex-direction: column;
 }
@@ -224,7 +261,7 @@ main {
     margin-top: 0.2em;
     margin-bottom: 0;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 600; 
 }
 
 .assignment-card .progress {
@@ -234,6 +271,13 @@ main {
     font-size: 15px;
 }
 
+.jump {
+    transition: transform 0.1s ease-in-out;
+  }
+  
+.jump:hover {   
+    transform: translateY(-5px) scale(1.1);
+}
 
 .mainIndex-container a {
     text-decoration: none;
@@ -251,7 +295,7 @@ main {
     min-width: 600px;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.20);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.10);
 }
 
 .table-container thead tr {
@@ -324,16 +368,18 @@ main {
     display: none;
 }
 
+.show-mainIndex-container,
 .mainIndexExp-container {
     background-color: #ffff;
     margin-top: 20px;
     border-radius: 10px;
-    min-height: 500px;
+    min-height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.submit-btn,
 .editExp-open,
 .deleteBtn {
     padding: 6px 20px;
@@ -353,6 +399,14 @@ main {
     background-color: #ff7f7f;
 }
 
+.submit-btn {
+    margin-top: 15px;
+    background-color: #fed8b1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .editExp-open:hover{
     background-color: #ffff;
     border: 2px solid #bee3ba;
@@ -365,10 +419,16 @@ main {
     color: #ff7f7f;
 }
 
+.submit-btn:hover{
+    background-color: #ffff;
+    border: 2px solid #fed8b1; 
+    color: #fed8b1;
+}
+/* for expenses card */
 .show-card {
     background-color: #fafafa;
     border-radius: 20px;
-    width: 300px;
+    min-width: 300px;
     height: 300px;
     display: flex;
     flex-direction: column;
@@ -390,11 +450,13 @@ main {
 }
 
 
+
 .flex-btns{
     margin-top: 20px;
     display: flex;
     justify-content: space-evenly;
     gap: 70px;
+    margin-bottom: 20px;
 }
 
 .view-btn {
@@ -410,4 +472,30 @@ main {
     color: #add8e6; 
     background-color: white;
     border: 2px solid #add8e6;
+}
+
+.show-assignment-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fafafa;
+    min-width: 450px;
+    min-height: auto;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-assignment-card p{
+    font-size: 15px;
+    margin-bottom: 2px;
+    text-align: left;
+}
+
+.show-assignment-card .title{
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 0;
 }

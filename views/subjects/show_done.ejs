@@ -23,8 +23,7 @@
 
         <div class="mainIndex-container">
             <ul>
-                
-
+    
                         <% subject.forEach(subject => { %>
         
                             <% hasDone = subject.assignments.find(assignment => assignment.progress === 'Done') %>
@@ -39,7 +38,7 @@
                                                     <% if (assignment.progress === 'Done') { %>
                                                         
                                                         <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">
-                                                            <div class="assignment-card" draggable="true">
+                                                            <div class="assignment-card jump" draggable="true">
                                                                 <p class="title"><%= assignment.title %></p>
                                                                 <p><%= assignment.dueDate.toDateString() %></p>
                                                                 <p><%= assignment.time %></p>
@@ -52,11 +51,7 @@
                                         </div>
                         
                                     <% } %>
-                           
                         <% }) %>
-          
-           
-                
             </ul>
 
         </div>
