@@ -21,9 +21,11 @@ const openEditExpBtn = document.querySelector('.editExp-open')
 const closeEditExpBtn = document.querySelector('.editExp-close')
 /*-------------- Functions -------------*/
 
+
 const openModal = function () {
     modal.classList.remove("hidden")
     overlay.classList.remove("hidden")
+    modal.classList.add('animate__animated', 'animate__bounceIn');
 }
 
 const closeModal = function () {
@@ -34,6 +36,7 @@ const closeModal = function () {
 const openEditModal = function () {
     editModal.classList.remove("hide-edit")
     overlay.classList.remove("hide-edit")
+    editModal.classList.add('animate__animated', 'animate__bounceIn');
 }
 
 const closeEditModal = function (){
@@ -44,6 +47,7 @@ const closeEditModal = function (){
 const openExpensesModal = function () {
     expensesModal.classList.remove("hide-expenses")
     overlay.classList.remove("hide-expenses")
+    expensesModal.classList.add('animate__animated', 'animate__bounceIn');
 }
 const closeExpensesModal = function () {
     expensesModal.classList.add("hide-expenses")
@@ -53,6 +57,7 @@ const closeExpensesModal = function () {
 const openEditExpModal = function () {
     editExpModal.classList.remove("hide-editExp")
     overlay.classList.remove("hide-editExp")
+    editExpModal.classList.add('animate__animated', 'animate__bounceIn');
 }
 const closeEditExpModal = function () {
     editExpModal.classList.add("hide-editExp")
