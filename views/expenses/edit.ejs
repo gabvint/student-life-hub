@@ -19,7 +19,7 @@
                 <button class="btn-close editExp-close">⨉</button>
             </div>
 
-            <form class="format-add" action="/users/<%= user._id %>/expenses" method="POST">
+            <form class="format-add" action="/users/<%= user._id %>/expenses/<%= expense._id %>?_method=PUT" method="POST">
 
                 <label for="description">Description:</label>
                 <input type="text" name="description" id="description" value="<%= expense.description %>">
@@ -38,9 +38,33 @@
         <!-- end of modal -->
 
 
-        
+        <div class="flex top-container">
+            <div>
+                <h2>My Expenses</h2>
+                <p>Track your expenses here!</p>
+            </div>
+        </div>
 
-        <button class="editExp-open">Edit</button>
+        <div class="mainIndexExp-container">
+
+            <div class="show-card">
+                <p class="desc"><%= expense.description %></p>
+                <p>Purchase date: <strong><%= date %></strong></p>
+                <p>Amount: <strong>$<%= expense.amount %>.00</strong> </p>
+
+                <div class="flex-btns">
+
+                    <button class="editExp-open">Edit</button>
+    
+                    <form action="/users/<%= user._id %>/expenses/<%= expense._id %>?_method=DELETE"
+                        method="POST">
+                           <button class="deleteBtn" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
     </main>
 
     <footer>

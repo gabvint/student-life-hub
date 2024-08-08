@@ -63,4 +63,38 @@ router.get('/:expensesId/edit', async (req, res) => {
     }
 })
 
+router.put('/:expenseId', async (req, res) => {
+    try {
+
+        const currUser = await User.findById(req.session.user._id)
+        const expenses = currUser.expenses.id(req.params.expenseId)
+
+        expenses.set(req.body)
+
+        await currUser.save()
+        
+        res.redirect(`/users/${req.session.user._id}/expenses`)
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+    }
+})
+
+router.delete('/:expenseId', async (req, res) => {
+    try {
+        const currUser = await User.findById(req.session.user._id)
+        const expense = currUser.expenses.id(req.params.expenseId)
+
+        expense.deleteOne()
+        await currUser.save()
+
+        res.redirect(`/users/${req.session.user._id}/expenses`)
+
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+    }
+
+})
+
 module.exports = router

@@ -114,8 +114,6 @@ router.put('/:subjectId/:assignmentId', async (req, res) => {
             subject.set(req.body)
             assignment.set(req.body)
         
-
-
         await currUser.save()
 
         res.redirect(`/users/${req.session.user._id}/subjects/${req.params.subjectId}/${req.params.assignmentId}/edit`)

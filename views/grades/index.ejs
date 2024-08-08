@@ -31,9 +31,10 @@
 
     
             <ul>
-
+                
                 <% subject.forEach(subject => { %>
                     
+                    <!--   a function for getting the average grade  -->
                     <%   function computeAverage(assignment){
                         let total = 0
                         if (assignment.length === 0){
@@ -71,7 +72,7 @@
                                    <td><%= assignment.progress %></td>
                                    <td><%= assignment.grade %></td>
 
-                                   <td><a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">View</a></td>
+                                   <td><a class="view-btn" href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">View</a></td>
                                </tr>
                            <% }) %>
     
@@ -82,10 +83,7 @@
                             </tr>
 
                            </tbody>
-    
-    
                         </table>
-                   
                 <% }) %>
             </ul>
         </div>

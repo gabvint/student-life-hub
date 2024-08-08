@@ -24,13 +24,13 @@
             <form class="format-add" action="/users/<%= user._id %>/expenses" method="POST">
 
                 <label for="description">Description:</label>
-                <input type="text" name="description" id="description">
+                <input type="text" name="description" id="description" required>
 
                 <label for="date">Date:</label>
-                <input type="date" name="date" id="date">
+                <input type="date" name="date" id="date" required>
 
                 <label for="amount">Amount:</label>
-                <input type="number" name="amount" id="amount">
+                <input type="number" name="amount" id="amount" required>
 
                 <button class="submit-btn" type="submit">Submit</button>
                 
@@ -50,27 +50,53 @@
 
 
 
-        <div class="mainIndex-container">
+        <div class="mainIndexExp-container">
 
             <ul>
-                <table>
+                <!-- function for adding all the expenses  -->
+                <% function computeTotal(expense){
+                    let total = 0
+
+                    if (expense.length === 0){
+                        return 0
+                    } else {
+                        expense.forEach(expense => {
+                            total += expense.amount
+                        })
+                    }
+
+                    return total
+                }%>
+
+
+                <table class="table-container">
                     <thead>
                         <th>Description</th>
                         <th>Date</th>
                         <th>Amount</th>
                         <th>Actions</th>
                     </thead>
-                <% expenses.forEach(expense => { %>
-                  
-                    <tr>
-                        <td><%= expense.description %></td>
-                        <td><%= expense.date.toLocaleDateString() %></td>
-                        <td>$<%= expense.amount %>.00</td>
-                        <td>
-                            <a href="/users/<%= user._id %>/expenses/<%= expense._id %>/edit">View</a>
-                        </td>
-                    </tr>
-                    <% }) %>
+
+                    <tbody>
+
+                        <% expenses.forEach(expense => { %>
+                          
+                            <tr>
+                                <td><%= expense.description %></td>
+                                <td><%= expense.date.toLocaleDateString() %></td>
+                                <td>$<%= expense.amount %>.00</td>
+                                <td>
+                                    <a class="view-btn" href="/users/<%= user._id %>/expenses/<%= expense._id %>/edit">View</a>
+                                </td>
+                            </tr>
+                            <% }) %>
+
+                            <tr>
+                                <td colspan="2"><strong>Total Expenses</strong></td>
+                                <td><strong>$<%= computeTotal(expenses) %>.00</strong></td>
+                                <td></td>
+                            </tr>
+                    </tbody>
                 </table>
             </ul>
 
@@ -78,5 +104,9 @@
             
         </div>
     </main>
+
+    <footer>
+        footer
+    </footer>
 </body>
 </html>
