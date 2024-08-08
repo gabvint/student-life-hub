@@ -10,51 +10,54 @@
 </head>
 <body>
   
-</body>
-</html>
-    <% if (user) { %>
-
-      <div class="webname">
-        <p> Student Life Hub</p>
+  <% if (user) { %>
+  
+    <div class="webname">
+      <p> Student Life Hub</p>
+    </div>
+    <div class="navbar-container">
+  
+      <p>Menu</p>
+  
+      <div class="menu-item">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <a href="/users/<%= user._id %>/subjects">My Assignments</a>
       </div>
-      <div class="navbar-container">
-
-        <p>Menu</p>
-
-        <div class="menu-item">
-          <i class="fa-solid fa-pen-to-square"></i>
-          <a href="/users/<%= user._id %>/subjects">My Assignments</a>
-        </div>
-        
-        <div class="menu-item">
-          <i class="fa-solid fa-check fa-lg"></i>
-          <a href="/users/<%= user._id %>/subjects/done">Done Assignments</a>
-        </div>
-
-        <div class="menu-item">
-          <i class="fa-solid fa-book"></i>
-          <a href="/users/<%= user._id %>/grades">Subject Grades</a>
-        </div>
-
-        <div class="menu-item">
-          <i class="fa-solid fa-wallet"></i>
-          <a href="/users/<%= user._id %>/expenses">Expenses</a>
-        </div>
-
-        <div class="spacer"></div>
-
-        <div class="menu-item">
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <a class="sign-out" href="/auth/sign-out">Sign out</a>
-        </div>
-
+      
+      <div class="menu-item">
+        <i class="fa-solid fa-check fa-lg"></i>
+        <a href="/users/<%= user._id %>/subjects/done">Done Assignments</a>
       </div>
+  
+      <div class="menu-item">
+        <i class="fa-solid fa-book"></i>
+        <a href="/users/<%= user._id %>/grades">Subject Grades</a>
+      </div>
+  
+      <div class="menu-item">
+        <i class="fa-solid fa-wallet"></i>
+        <a href="/users/<%= user._id %>/expenses">Expenses</a>
+      </div>
+  
+      <div class="spacer"></div>
+  
+      <div class="menu-item">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <a class="sign-out" href="/auth/sign-out">Sign out</a>
+      </div>
+  
+    </div>
 
-
-
-     <% } else { %>
-
+  
+  
+   <% } else { %>
+  
+    <nav class="second-navbar-container">
+  
       <a href="/auth/sign-up">Sign up</a>
       <a href="/auth/sign-in">Sign in</a>
-      
-    <% } %>
+    </nav>
+    
+  <% } %>
+</body>
+</html>
