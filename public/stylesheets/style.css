@@ -157,6 +157,7 @@ main {
     background-color: #ffff;
     display: flex;
     flex-direction: column;
+    text-align: left;
     min-width: 200px;
     min-height: 500px;
     border-radius: 10px;
@@ -168,22 +169,32 @@ main {
     font-weight: 500;
     font-size: 13px;
 }
-.navbar-container a{
+
+.menu-item a{
     text-decoration: none;
+    color:#808080;
+}
+.menu-item i{
+    margin-right: 8px;
+}
+
+
+.menu-item {
+    margin-bottom: 2px;
+    padding: 12px;
     border-radius: 10px;
-    margin-top: 10px;
-    padding: 15px 15px;
-    font-size: 15px;
     font-weight: 500;
     color: #808080;
-   
 }
-.navbar-container a:hover{
-    cursor: pointer;
-    background-color: black;
-    color: #ffff;
-    transition: 0.5s;
+
+.menu-item:hover {
+    background-color: black; 
+    color: white;
 }
+.menu-item a:hover{
+    color:#ffff;
+}
+
 
 .spacer{
     flex-grow: 1;
@@ -243,13 +254,24 @@ main {
     width: 220px;
     height: 185px;
     border-radius: 20px;
-    border: 3px solid #fafafa;
     font-size: 15px;
     margin-right: 15px;
     display: flex;
     flex-direction: column;
 }
 
+.assignment-card.not-started{
+    border: 3px solid #ff7f7f;
+}
+.assignment-card.in-progress{
+    border: 3px solid #add8e6;
+}
+.assignment-card.for-checking{
+    border: 3px solid #fed8b1;
+}
+.assignment-card.done{
+    border: 3px solid #bee3ba;
+}
 .assignment-card .title {
     color: black;
     font-size: 21px;
@@ -499,3 +521,4 @@ main {
     margin-top: 30px;
     margin-bottom: 0;
 }
+
