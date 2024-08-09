@@ -82,20 +82,12 @@ router.get('/:subjectId/:assignmentId/edit', async (req, res) => {
         const subject = currUser.subjects.id(req.params.subjectId)
         const assignment = subject.assignments.id(req.params.assignmentId)
 
-        // formatting for date
-        // Adjust the date to the local timezone by subtracting the timezone offset
-        // this ensures that when the date is displayed, it will not add another day :(
-        const dueDate = new Date(assignment.dueDate)
-        const localDate = new Date(dueDate.getTime() - (dueDate.getTimezoneOffset() * 60000))
-        const dueDateFormatted = localDate.toISOString().split('T')[0]
-
         // formatting for time
         const time = assignment.time
 
         res.render('subjects/edit.ejs', {
             subject: subject, 
             assignment: assignment,
-            date: dueDateFormatted,
             time: time,
         })
     } catch (error) {

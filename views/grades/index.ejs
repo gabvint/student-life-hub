@@ -68,7 +68,11 @@
                            <% subject.assignments.forEach(assignment => { %>
                                <tr>
                                    <td><%= assignment.title %></td>
-                                   <td><%= assignment.dueDate.toLocaleDateString()%></td>
+                                   <td>
+                                    <%= assignment.dueDate.toDateString().split(' ')[0] %> -
+                                    <%= assignment.dueDate.toISOString().split('T')[0] %> 
+
+                                </td>
                                    <td><%= assignment.progress %></td>
                                    <td><%= assignment.grade %></td>
 

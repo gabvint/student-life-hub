@@ -127,7 +127,10 @@
                                        <% } %>
                                        jump">
                                            <p class="title"><%= assignment.title %></p>
-                                           <p><%= assignment.dueDate.toDateString() %></p>
+                                           <p>
+                                            <%= assignment.dueDate.toDateString().split(' ')[0] %> - 
+                                            <%= assignment.dueDate.toISOString().split('T')[0] %>
+                                        </p>
                                            <p><%= assignment.time %></p>
                                            <div class="spacer"></div>
                                            <p class="progress"><%= assignment.progress %></p>

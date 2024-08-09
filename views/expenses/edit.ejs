@@ -26,7 +26,7 @@
                 <input type="text" name="description" id="description" value="<%= expense.description %>">
 
                 <label for="date">Date:</label>
-                <input type="date" name="date" id="date" value="<%= date %>">
+                <input type="date" name="date" id="date" value="<%= expense.date.toISOString().split('T')[0] %>">
 
                 <label for="amount">Amount:</label>
                 <input type="number" name="amount" id="amount" value="<%= expense.amount %>">
@@ -50,7 +50,12 @@
 
             <div class="show-card">
                 <p class="desc"><%= expense.description %></p>
-                <p>Purchase date: <strong><%= date %></strong></p>
+                <p>Purchase date: 
+                    <strong>
+                    <%= expense.date.toDateString().split(' ')[0] %>
+                    <%= expense.date.toISOString().split('T')[0] %>
+                    </strong>
+                </p>
                 <p>Amount: <strong>$<%= expense.amount %>.00</strong> </p>
 
                 <div class="flex-btns">

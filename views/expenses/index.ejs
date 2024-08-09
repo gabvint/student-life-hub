@@ -75,7 +75,7 @@
                 <table class="table-container">
                     <thead>
                         <th>Description</th>
-                        <th>Date</th>
+                        <th>Date (yyyy-mm-dd)</th>
                         <th>Amount</th>
                         <th>Actions</th>
                     </thead>
@@ -86,7 +86,10 @@
                           
                             <tr>
                                 <td><%= expense.description %></td>
-                                <td><%= expense.date.toLocaleDateString() %></td>
+                                <td>
+                                    <%= expense.date.toDateString().split(' ')[0] %>
+                                    <%= expense.date.toISOString().split('T')[0] %>
+                                </td>
                                 <td>$<%= expense.amount %>.00</td>
                                 <td>
                                     <a class="view-btn" href="/users/<%= user._id %>/expenses/<%= expense._id %>/edit">View</a>

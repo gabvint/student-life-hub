@@ -40,7 +40,10 @@
                                                         <a href="/users/<%= user._id %>/subjects/<%= subject._id %>/<%= assignment._id %>/edit">
                                                             <div class="assignment-card done jump" draggable="true">
                                                                 <p class="title"><%= assignment.title %></p>
-                                                                <p><%= assignment.dueDate.toDateString() %></p>
+                                                                <p>
+                                                                    <%= assignment.dueDate.toDateString().split(' ')[0] %>
+                                                                    <%= assignment.dueDate.toISOString().split('T')[0] %>
+                                                                </p>
                                                                 <p><%= assignment.time %></p>
                                                                 <div class="spacer"></div>
                                                                 <p><%= assignment.progress %></p>
