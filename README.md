@@ -60,3 +60,5 @@ https://student-life-hub-455ca3e2f1cb.herokuapp.com/
 - Have a sort button which allows the user to display sorted assignments and expenses based on specific requirements
 - Have a search bar which allows user to search assignments and expenses
 - View expenses depending on month
+- Dark mode 
+
